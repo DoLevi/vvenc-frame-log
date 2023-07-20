@@ -365,7 +365,7 @@ int main( int argc, char* argv[] )
     {
       vvencYUVBuffer* ptrYUVInputBuffer = nullptr;
       gettimeofday(&ts_log, NULL);
-      printf("encoding %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec);
+      printf("encoding %d: %luus\n", uiFrames, ts_log.tv_sec * 1000000 + ts_log.tv_usec);
       if( !bEof )
       {
         if( 0 != cYuvFileInput.readYuvBuf( cYUVInputBuffer, bEof ) )
@@ -416,7 +416,7 @@ int main( int argc, char* argv[] )
           cOutBitstream.write( (const char*)AU.payload, AU.payloadUsedSize );
         }
         gettimeofday(&ts_log, NULL);
-        printf("encoded %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec);
+        printf("encoded %d: %luus\n", uiFrames, ts_log.tv_sec * 1000000 + ts_log.tv_usec);
         uiFrames++;
       }
 
