@@ -47,6 +47,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <iostream>
 
+#include <sys/time.h>
 #include <stdio.h>
 #include <string>
 #include <sstream>
@@ -359,9 +360,11 @@ int main( int argc, char* argv[] )
     cStats.init( vvenccfg.m_FrameRate, vvenccfg.m_FrameScale, (int)framesToEncode, "vvenc [info]: " );
     bool statsInfoReady = false;
 
+    struct timeval ts_log;
     while( !bEof || !bEncodeDone )
     {
-      vvencYUVBuffer* ptrYUVInputBuffer = nullptr;
+      gettimeofday(&ts_log, NULL);
+      printf("encoding %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec); vvencYUVBuffer* ptrYUVInputBuffer = nullptr;
       if( !bEof )
       {
         if( 0 != cYuvFileInput.readYuvBuf( cYUVInputBuffer, bEof ) )
@@ -411,6 +414,8 @@ int main( int argc, char* argv[] )
           // write output
           cOutBitstream.write( (const char*)AU.payload, AU.payloadUsedSize );
         }
+        gettimeofday(&ts_log, NULL);
+        printf("encoding %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec); vvencYUVBuffer* ptrYUVInputBuffer = nullptr;
         uiFrames++;
       }
 
