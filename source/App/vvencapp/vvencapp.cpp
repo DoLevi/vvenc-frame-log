@@ -416,7 +416,7 @@ int main( int argc, char* argv[] )
           cOutBitstream.write( (const char*)AU.payload, AU.payloadUsedSize );
         }
         gettimeofday(&ts_log, NULL);
-        printf("encoding %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec);
+        printf("encoded %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec);
         uiFrames++;
       }
 
