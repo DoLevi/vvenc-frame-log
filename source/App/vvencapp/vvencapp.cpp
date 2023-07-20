@@ -365,7 +365,6 @@ int main( int argc, char* argv[] )
     {
       gettimeofday(&ts_log, NULL);
       printf("encoding %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec);
-      vvencYUVBuffer* ptrYUVInputBuffer = nullptr;
       if( !bEof )
       {
         if( 0 != cYuvFileInput.readYuvBuf( cYUVInputBuffer, bEof ) )
