@@ -363,6 +363,7 @@ int main( int argc, char* argv[] )
     struct timeval ts_log;
     while( !bEof || !bEncodeDone )
     {
+      vvencYUVBuffer* ptrYUVInputBuffer = nullptr;
       gettimeofday(&ts_log, NULL);
       printf("encoding %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec);
       if( !bEof )
@@ -415,7 +416,7 @@ int main( int argc, char* argv[] )
           cOutBitstream.write( (const char*)AU.payload, AU.payloadUsedSize );
         }
         gettimeofday(&ts_log, NULL);
-        printf("encoding %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec); vvencYUVBuffer* ptrYUVInputBuffer = nullptr;
+        printf("encoding %d: %lus %luus\n", uiFrames, ts_log.tv_sec, ts_log.tv_usec);
         uiFrames++;
       }
 
